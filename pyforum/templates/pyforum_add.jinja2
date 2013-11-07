@@ -1,0 +1,26 @@
+{% extends 'templates/home.jinja2' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+  <h3>PyForum - Topic Add</h3>
+  <a href='/list' class='pull-right btn btn-primary'>Back to All Topics</a>
+  <br />
+  <hr />
+  <div class="bs-old-docs">
+      <div class="container">   
+        {{ form.begin(request.route_url('pyforum_add')) }}
+
+        <div class="well" style="max-width: 400px; margin: 0 auto 10px;">
+          <div class="controls">
+            {{ form.errorlist("title") }}
+            <input class="form-control input-lg" name="title" type="text" placeholder="Add your topic here">
+          </div><br>
+
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Add Topic </button>
+        </div>
+
+        {{ form.end() }}
+      </div>
+  </div>
+{% endblock %}

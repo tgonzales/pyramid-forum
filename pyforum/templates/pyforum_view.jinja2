@@ -1,0 +1,27 @@
+{% extends 'templates/home.jinja2' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+  <h3>PyForum - Topic Available</h3>
+  <a href='/add' class='pull-right btn btn-primary'>Add Topic</a>
+  <br />
+  <hr />
+  <div class="bs-old-docs">
+      <div class="container">
+        <ul class="unstyled">
+            {% if topics %}
+            {% for topic in topics %}
+            <li>
+                <p class='lead'><a href=''> {{ topic.title }} </a><br><em><small> 
+                    <a href="/delete/{{ topic.id }}">Delete</a></em></small>
+                </p>                
+            </li>            
+            {% endfor %}
+            {% else %}
+            <h3>Não há tópicos no momento, seja o primeiro a adicionar um tópico!</h3>
+            {% endif%}
+        </ul>
+      </div>
+  </div>
+{% endblock %}
