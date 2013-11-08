@@ -1,0 +1,58 @@
+{% extends 'templates/home.jinja2' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+  <h3>PyForum - Message Available</h3>
+  <p><em><small> {{ topic_title }} </em></small></p> 
+  <br />
+  <hr />
+  <div class="bs-old-docs">
+      <div class="container">
+        <ul class="unstyled">
+            {% if topics %}
+            {% for topic in topics %}
+            <li>
+                <p class='lead'> {{ topic.name }}</p>
+                <p>
+                  {{ topic.description }}
+                </p>
+                <hr />                
+            </li>            
+            {% endfor %}
+              <p><a href="/list">Back to Topic List</a></p>
+            {% else %}
+            <h3>Não há mensagem para esse tópicos no momento, seja o primeiro a adicionar uma mensagem!</h3>
+            <p><a href="/list">Back to Topic List</a></p>
+            {% endif%}
+        </ul>
+      </div>
+  </div>
+
+  <div class="bs-old-docs">
+      <hr />
+      <h3>PyForum - Message Add - </h3>
+      <br />
+    <div class="container"> 
+
+      <form action="/message_list/{{ id_topic }}/{{ topic_title }}" method="post">
+
+      <div class="well" style="max-width: 400px; margin: 0 auto 10px;">
+        <div class="controls">
+          {{ form.errorlist("name") }}
+          {{ form.errorlist("description") }}
+          <input class="form-control input-lg" name="name" type="text" placeholder="Add your Name here">
+
+          <textarea class="form-control" rows="10" name="description">
+          Add your description here
+          </textarea>
+
+        </div><br>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Add Topic </button>
+      </div>
+
+      {{ form.end() }}
+    </div>
+  </div>
+
+{% endblock %}

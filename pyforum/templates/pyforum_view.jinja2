@@ -13,15 +13,36 @@
             {% if topics %}
             {% for topic in topics %}
             <li>
-                <p class='lead'><a href=''> {{ topic.title }} </a><br><em><small> 
-                    <a href="/delete/{{ topic.id }}">Delete</a></em></small>
+                <p class='lead'><a href='/message_list/{{ topic.id }}/{{ topic.title }}'> {{ topic.title }} </a></p>
+                <p><em><small> 
+                    <a href="/delete/{{ topic.id }}/topic">Delete this topic</a></em></small>
                 </p>                
-            </li>            
+            </li>
+            <hr />            
             {% endfor %}
             {% else %}
             <h3>Não há tópicos no momento, seja o primeiro a adicionar um tópico!</h3>
             {% endif%}
         </ul>
+      </div>
+  </div>
+
+  <div class="bs-old-docs">
+      <div class="container">   
+        <h3>PyForum - Topic Add</h3>
+        <br />
+        {{ form.begin(request.route_url('pyforum_view')) }}
+
+        <div class="well" style="max-width: 400px; margin: 0 auto 10px;">
+          <div class="controls">
+            {{ form.errorlist("title") }}
+            {{ form.errorlist("description") }}
+            <input class="form-control input-lg" name="title" type="text" placeholder="Add your topic here">
+          </div><br>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Add Topic </button>
+        </div>
+
+        {{ form.end() }}
       </div>
   </div>
 {% endblock %}
